@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: smile-server
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:test;
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+        ddl-auto: create
+    generate-ddl: true
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+liquibase:
+    enabled: true
+    change-log: classpath:db.changelog/db.changelog-master.xml
+    contexts: dev
