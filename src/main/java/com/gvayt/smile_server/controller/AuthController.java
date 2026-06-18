@@ -1,9 +1,9 @@
 package com.gvayt.smile_server.controller;
 
-import com.gvayt.smile_server.dto.KidDTO;
-import com.gvayt.smile_server.dto.KidRegisterDTO;
-import com.gvayt.smile_server.dto.ParentDTO;
-import com.gvayt.smile_server.dto.ParentRegisterDTO;
+import com.gvayt.smile_server.dto.kid.KidDTO;
+import com.gvayt.smile_server.dto.kid.KidRegisterDTO;
+import com.gvayt.smile_server.dto.parent.ParentDTO;
+import com.gvayt.smile_server.dto.parent.ParentRegisterDTO;
 import com.gvayt.smile_server.service.KidService;
 import com.gvayt.smile_server.service.ParentService;
 import jakarta.validation.Valid;

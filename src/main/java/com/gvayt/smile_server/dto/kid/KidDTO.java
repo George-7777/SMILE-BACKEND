@@ -1,4 +1,4 @@
-package com.gvayt.smile_server.dto;
+package com.gvayt.smile_server.dto.kid;
 
 import lombok.Data;
 

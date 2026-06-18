@@ -1,15 +1,14 @@
 package com.gvayt.smile_server.controller;
 
-import com.gvayt.smile_server.dto.TaskDTO;
+import com.gvayt.smile_server.dto.task.TaskAddDTO;
+import com.gvayt.smile_server.dto.task.TaskDTO;
 import com.gvayt.smile_server.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -23,8 +22,23 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addTask(Authentication authentication, TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskService.addTask(authentication.getName(), taskDTO));
+    public ResponseEntity<?> addTask(Authentication authentication, TaskAddDTO taskDTO) {
+        try {
+            taskService.addTask(authentication.getName(), taskDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTask(Authentication authentication, @Param("id") long task_id) {
+        try {
+            taskService.deleteTask(authentication.getName(), task_id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/kids/{login}")
@@ -33,7 +47,12 @@ public class TaskController {
     }
 
     @PostMapping("/kids/{login}")
-    public ResponseEntity<?> addTaskMyKid(@Param("login") String kid_login, TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskService.addTask(kid_login, taskDTO));
+    public ResponseEntity<?> addTaskMyKid(@Param("login") String kid_login, TaskAddDTO taskDTO) {
+        try {
+            taskService.addTask(kid_login, taskDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

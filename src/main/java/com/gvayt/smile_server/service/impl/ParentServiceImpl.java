@@ -1,7 +1,7 @@
 package com.gvayt.smile_server.service.impl;
 
-import com.gvayt.smile_server.dto.ParentDTO;
-import com.gvayt.smile_server.dto.ParentRegisterDTO;
+import com.gvayt.smile_server.dto.parent.ParentDTO;
+import com.gvayt.smile_server.dto.parent.ParentRegisterDTO;
 import com.gvayt.smile_server.entity.Parent;
 import com.gvayt.smile_server.exception.EmailNotFoundException;
 import com.gvayt.smile_server.exception.ParentAlreadyExitsException;
