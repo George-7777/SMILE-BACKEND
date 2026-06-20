@@ -3,7 +3,7 @@ package com.gvayt.smile_server.service.impl;
 import com.gvayt.smile_server.dto.task.TaskAddDTO;
 import com.gvayt.smile_server.dto.task.TaskDTO;
 import com.gvayt.smile_server.entity.Task;
-import com.gvayt.smile_server.exception.LoginNotFoundException;
+import com.gvayt.smile_server.exception.kid.LoginNotFoundException;
 import com.gvayt.smile_server.repository.KidRepository;
 import com.gvayt.smile_server.repository.TaskRepository;
 import com.gvayt.smile_server.service.TaskService;

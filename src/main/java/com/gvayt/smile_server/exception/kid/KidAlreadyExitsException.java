@@ -1,4 +1,4 @@
-package com.gvayt.smile_server.exception;
+package com.gvayt.smile_server.exception.kid;
 
 public class KidAlreadyExitsException extends RuntimeException {
     public KidAlreadyExitsException(String login) {

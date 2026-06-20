@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tasks")
 @RequiredArgsConstructor
@@ -17,42 +19,27 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<?> getAllMyTasks(Authentication authentication) {
-        return ResponseEntity.ok(taskService.getAllTasksByKid(authentication.getName()));
+    public List<TaskDTO> getAllMyTasks(Authentication authentication) {
+        return taskService.getAllTasksByKid(authentication.getName());
     }
 
     @PostMapping
-    public ResponseEntity<?> addTask(Authentication authentication, TaskAddDTO taskDTO) {
-        try {
-            taskService.addTask(authentication.getName(), taskDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void addTask(Authentication authentication, TaskAddDTO taskDTO) {
+        taskService.addTask(authentication.getName(), taskDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTask(Authentication authentication, @Param("id") long task_id) {
-        try {
-            taskService.deleteTask(authentication.getName(), task_id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public void deleteTask(Authentication authentication, @Param("id") long task_id) {
+        taskService.deleteTask(authentication.getName(), task_id);
     }
 
     @GetMapping("/kids/{login}")
-    public ResponseEntity<?> getAllTasksMyKid(@Param("login") String kid_login) {
-        return ResponseEntity.ok(taskService.getAllTasksByKid(kid_login));
+    public List<TaskDTO> getAllTasksMyKid(@Param("login") String kid_login) {
+        return taskService.getAllTasksByKid(kid_login);
     }
 
     @PostMapping("/kids/{login}")
-    public ResponseEntity<?> addTaskMyKid(@Param("login") String kid_login, TaskAddDTO taskDTO) {
-        try {
-            taskService.addTask(kid_login, taskDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void addTaskMyKid(@Param("login") String kid_login, TaskAddDTO taskDTO) {
+        taskService.addTask(kid_login, taskDTO);
     }
 }

@@ -1,4 +1,4 @@
-package com.gvayt.smile_server.exception;
+package com.gvayt.smile_server.exception.task;
 
 public class TaskNotFoundException extends RuntimeException {
     public TaskNotFoundException(long id) {

@@ -1,7 +1,7 @@
 package com.gvayt.smile_server.security;
 
 import com.gvayt.smile_server.entity.Task;
-import com.gvayt.smile_server.exception.TaskNotFoundException;
+import com.gvayt.smile_server.exception.task.TaskNotFoundException;
 import com.gvayt.smile_server.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
