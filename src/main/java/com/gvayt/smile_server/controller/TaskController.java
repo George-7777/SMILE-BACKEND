@@ -29,22 +29,22 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(Authentication authentication, @Param("id") long task_id) {
+    public void deleteTask(Authentication authentication, @PathVariable("id") long task_id) {
         taskService.deleteTask(authentication.getName(), task_id);
     }
 
     @GetMapping("/kids/{login}")
-    public List<TaskDTO> getAllTasksMyKid(@Param("login") String kid_login) {
+    public List<TaskDTO> getAllTasksMyKid(@PathVariable("login") String kid_login) {
         return taskService.getAllTasksByKid(kid_login);
     }
 
     @PostMapping("/kids/{login}")
-    public void addTaskMyKid(@Param("login") String kid_login, TaskAddDTO taskDTO) {
+    public void addTaskMyKid(@PathVariable("login") String kid_login, TaskAddDTO taskDTO) {
         taskService.addTask(kid_login, taskDTO);
     }
 
     @DeleteMapping("/kids/{login}/{id}")
-    public void deleteTaskMyKid(@Param("login") String kid_login, @Param("id") long task_id) {
+    public void deleteTaskMyKid(@PathVariable("login") String kid_login, @PathVariable("id") long task_id) {
         taskService.deleteTask(kid_login, task_id);
     }
 }
