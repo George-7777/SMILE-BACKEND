@@ -5,6 +5,8 @@ import com.gvayt.smile_server.dto.parent.ParentRegisterDTO;
 import com.gvayt.smile_server.entity.Parent;
 import lombok.experimental.UtilityClass;
 
+import java.util.ArrayList;
+
 @UtilityClass
 public class ParentMapper {
     public ParentDTO convertToPublicDto(Parent parent) {
@@ -12,6 +14,7 @@ public class ParentMapper {
         parentDTO.setId(parent.getId());
         parentDTO.setFio(parent.getFio());
         parentDTO.setEmail(parent.getEmail());
+        parentDTO.setKidList(parent.getKids().stream().map(KidMapper::convertToDto).toList());
         return parentDTO;
     }
 
@@ -20,6 +23,7 @@ public class ParentMapper {
         parent.setFio(request.getFio());
         parent.setEmail(request.getEmail());
         parent.setHashPassword(request.getPassword());
+        parent.setKids(new ArrayList<>());
         return parent;
     }
 }

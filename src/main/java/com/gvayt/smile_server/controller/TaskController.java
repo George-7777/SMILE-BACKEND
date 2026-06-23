@@ -27,7 +27,7 @@ public class TaskController {
     public void addTask(Authentication authentication, TaskAddDTO taskDTO) {
         taskService.addTask(authentication.getName(), taskDTO);
     }
-
+ 
     @DeleteMapping("/{id}")
     public void deleteTask(Authentication authentication, @Param("id") long task_id) {
         taskService.deleteTask(authentication.getName(), task_id);
@@ -41,5 +41,10 @@ public class TaskController {
     @PostMapping("/kids/{login}")
     public void addTaskMyKid(@Param("login") String kid_login, TaskAddDTO taskDTO) {
         taskService.addTask(kid_login, taskDTO);
+    }
+
+    @DeleteMapping("/kids/{login}/{id}")
+    public void deleteTaskMyKid(@Param("login") String kid_login, @Param("id") long task_id) {
+        taskService.deleteTask(kid_login, task_id);
     }
 }
