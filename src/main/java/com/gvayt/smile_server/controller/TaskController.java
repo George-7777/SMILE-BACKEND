@@ -27,7 +27,7 @@ public class TaskController {
     public void addTask(Authentication authentication, TaskAddDTO taskDTO) {
         taskService.addTask(authentication.getName(), taskDTO);
     }
- 
+
     @DeleteMapping("/{id}")
     public void deleteTask(Authentication authentication, @Param("id") long task_id) {
         taskService.deleteTask(authentication.getName(), task_id);
