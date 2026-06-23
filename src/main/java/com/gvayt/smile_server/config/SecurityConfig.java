@@ -42,7 +42,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/register/parent").permitAll()
                                 .requestMatchers("/swagger-ui/**").permitAll()
                                 .requestMatchers("/v3/api-docs/**").permitAll()
-                                .requestMatchers("/api/auth/register/kid", "/api/tasks/kids/**", "api/kids/**").hasAnyAuthority("ROLE_PARENT")
+                                .requestMatchers("/api/auth/register/kid", "/api/tasks/kids/**", "/api/kids/**").hasAnyAuthority("ROLE_PARENT")
                                 .requestMatchers("/api/tasks", "/api/tasks/**").hasAnyAuthority("ROLE_KID")
                                 .anyRequest().authenticated()
                 )
