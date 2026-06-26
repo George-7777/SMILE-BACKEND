@@ -31,12 +31,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @PreAuthorize("@kidSecurity.canAccessChild(#login, authentication.principal)")
-    public void addTask(String login, TaskAddDTO taskDTO) {
+    public TaskDTO addTask(String login, TaskAddDTO taskDTO) {
         Task task = TaskMapper.convertToEntity(taskDTO);
         task.setKid(kidRepository.findByLogin(login).orElseThrow(
                 () -> new LoginNotFoundException(login)
         ));
-        taskRepository.save(task);
+
+        return TaskMapper.convertToDto(taskRepository.save(task));
     }
 
     @Override

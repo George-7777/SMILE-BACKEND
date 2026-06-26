@@ -25,8 +25,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public void addTask(Authentication authentication, @Valid @RequestBody TaskAddDTO taskDTO) {
-        taskService.addTask(authentication.getName(), taskDTO);
+    public TaskDTO addTask(Authentication authentication, @Valid @RequestBody TaskAddDTO taskDTO) {
+        return taskService.addTask(authentication.getName(), taskDTO);
     }
 
     @DeleteMapping("/{id}")
