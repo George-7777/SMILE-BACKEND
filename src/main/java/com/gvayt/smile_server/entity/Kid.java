@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "kids")
 @Data
@@ -27,4 +29,7 @@ public class Kid {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id", nullable = false)
     private Parent parent;
+
+    @OneToMany(mappedBy = "kid", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 }

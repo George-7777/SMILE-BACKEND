@@ -1,8 +1,9 @@
 package com.gvayt.smile_server.service.impl;
 
-import com.gvayt.smile_server.dto.TaskDTO;
+import com.gvayt.smile_server.dto.task.TaskAddDTO;
+import com.gvayt.smile_server.dto.task.TaskDTO;
 import com.gvayt.smile_server.entity.Task;
-import com.gvayt.smile_server.exception.LoginNotFoundException;
+import com.gvayt.smile_server.exception.kid.LoginNotFoundException;
 import com.gvayt.smile_server.repository.KidRepository;
 import com.gvayt.smile_server.repository.TaskRepository;
 import com.gvayt.smile_server.service.TaskService;
@@ -30,13 +31,18 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @PreAuthorize("@kidSecurity.canAccessChild(#login, authentication.principal)")
-    public TaskDTO addTask(String login, TaskDTO taskDTO) {
+    public TaskDTO addTask(String login, TaskAddDTO taskDTO) {
         Task task = TaskMapper.convertToEntity(taskDTO);
         task.setKid(kidRepository.findByLogin(login).orElseThrow(
                 () -> new LoginNotFoundException(login)
         ));
-        taskRepository.save(task);
 
-        return taskDTO;
+        return TaskMapper.convertToDto(taskRepository.save(task));
+    }
+
+    @Override
+    @PreAuthorize("@kidSecurity.canAccessChild(#login, authentication.principal) && @taskSecurity.canAccessTask(#login, #task_id)")
+    public void deleteTask(String login, long task_id) {
+        taskRepository.deleteById(task_id);
     }
 }

@@ -1,11 +1,11 @@
 package com.gvayt.smile_server.service.impl;
 
-import com.gvayt.smile_server.dto.KidDTO;
-import com.gvayt.smile_server.dto.KidRegisterDTO;
+import com.gvayt.smile_server.dto.kid.KidDTO;
+import com.gvayt.smile_server.dto.kid.KidRegisterDTO;
 import com.gvayt.smile_server.entity.Kid;
-import com.gvayt.smile_server.exception.EmailNotFoundException;
-import com.gvayt.smile_server.exception.KidAlreadyExitsException;
-import com.gvayt.smile_server.exception.LoginNotFoundException;
+import com.gvayt.smile_server.exception.parent.EmailNotFoundException;
+import com.gvayt.smile_server.exception.kid.KidAlreadyExitsException;
+import com.gvayt.smile_server.exception.kid.LoginNotFoundException;
 import com.gvayt.smile_server.repository.KidRepository;
 import com.gvayt.smile_server.repository.ParentRepository;
 import com.gvayt.smile_server.service.KidService;
